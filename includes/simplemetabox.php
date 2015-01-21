@@ -59,29 +59,37 @@ function add_alternate_language_metabox( $post )
 			$("#deleteLang").click(function() {
 				var url = $("#alternateurls option:selected").text().replace(/\s.*$/g, '');
 				var code = $("#alternateurls").val();
+				var jsondata = $("#selectedAlternateLanguages").val();
 				
 				$("#alternateurls option:selected" ).remove();
-				$("#alternateurls > option").each(function() {
-				    var jsondata = $("#selectedAlternateLanguages").val();
-				    console.log(jsondata);
-				    if(jsondata != "")
+				
+				 
+				if( $('#alternateurls').has('option').length > 0 ) {
+					console.log(jsondata);
+					if(jsondata != "")
 					{
-						console.log(url + ' da da ' + code);
 						jsondata = jQuery.parseJSON(jsondata);
 						$.each(jsondata.pages, function( index, value ) {
-						  if(value.url == url && value.code == code)
-						  {
-						  	console.log( index + ": deleting " + value.code + "  - " + value.url );
-						  	jsondata.pages.splice(index, 1);
-						  	return;
-						  }
-						  
-						});
-						$("#selectedAlternateLanguages").val(JSON.stringify(jsondata));
-					}
-				    
-				    
-				});
+							  var arr = $.map(value, function(val, key) { return val; });							
+							  var optionUrl = arr[0];
+							  var optionCode = arr[1];
+							  if(optionUrl == url && optionCode == code)
+							  {
+							  	console.log( index + ": deleting " + optionCode + "  - " + optionUrl );
+							  	var deleted = jsondata.pages.splice(index, 1);
+							  	console.log(deleted + '    DELETED');
+							  	$("#selectedAlternateLanguages").val(JSON.stringify(jsondata));
+							  	return;
+							  }
+							  
+							});
+							
+					}							
+				}
+				else
+				{
+					$("#selectedAlternateLanguages").val("");
+				}
 			});
 			$( "#addLang" ).click(function() {
 				var url = $("#urllanguage").val();
