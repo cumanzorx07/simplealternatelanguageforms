@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Simple Alternate Language for MultiSite WP
-Plugin URI: http://www.carlosumanzor.com
-Description: A simple plugin that allows you to set the alternate language version of a post/page in a Multi Site environment (based on https://support.google.com/webmasters/answer/189077?hl=en)
+Plugin URI: http://www.carlosumanzor.com/project/simple-alternate-language-for-multisite-wp/
+Description: A simple plugin that allows you to set the alternate language version of a post/page in a MultiSite environment (based on https://support.google.com/webmasters/answer/189077?hl=en)
 Version: 1.0
 Author: Carlos Alberto Umanzor Arguedas
 Author URI: http://www.carlosumanzor.com
